@@ -126,7 +126,7 @@
                         <span id="dynamic-text" class="text-light-text"></span><span class="blinking-cursor">|</span>
                     </h2>
                     <p class="mt-6 max-w-2xl text-lg text-light-text">
-                        I'm a Computer Science student specializing in AI, Data Science, and high-performance software engineering. I have a passion for building intelligent systems, from automated ML forecasting to advanced research tools.
+                        I'm a Computer Science student learning AI, Data Science, and high-performance software engineering. I have a passion for building intelligent systems, from automated ML forecasting to advanced research tools.
                     </p>
                     <div class="mt-8 flex items-center space-x-4">
                         <a href="#projects" class="bg-accent text-primary font-bold py-3 px-6 rounded-lg hover:bg-opacity-80 transition-all duration-300">
@@ -148,7 +148,7 @@
                 <!-- Image -->
                 <div class="hidden md:flex justify-center items-center animate-fade-in-up">
                     <!-- PHOTO PLACEHOLDER: Replace src with the path to your photo -->
-                    <img src="./assets/pfp.png" alt="A photo of Siddh Mehta" class="rounded-full w-80 h-80 object-cover border-4 border-border-color shadow-lg">
+                    <img src="./assets/pfp.png" alt="A photo of me" class="rounded-full w-80 h-80 object-cover border-4 border-border-color shadow-lg">
                 </div>
             </div>
         </section>
@@ -448,7 +448,7 @@
             const dynamicText = document.getElementById('dynamic-text');
             const phrases = [
                 "I study CS with Data Science at VIT.",
-                "I'm a former international cricketer for Oman.",
+                "I am a former international cricketer for Oman.",
                 "SPECIAL_JAVA_PYTHON"
             ];
             let phraseIndex = 0;
@@ -508,7 +508,7 @@
                         setTimeout(type, typingSpeed);
                     }
                 } else if (javaPhase === 2) {
-                    const pythonText = "I code in Python";
+                    const pythonText = "I code in Python and JS";
                     if (charIndex < pythonText.length) {
                         dynamicText.textContent = pythonText.substring(0, charIndex + 1);
                         charIndex++;
