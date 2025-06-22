@@ -22,13 +22,22 @@
                         'light-text': '#C9D1D9',
                         'dark-text': '#8B949E',
                         'border-color': '#30363D'
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
                     }
                 }
             }
         }
     </script>
     <style>
-        /* Custom scrollbar for a more modern look */
+        /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -42,10 +51,39 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #58A6FF;
         }
-        /* Style for active nav link */
+        
+        /* Active nav link style */
         .nav-link-active {
             color: #58A6FF;
             font-weight: 600;
+        }
+        
+        /* Tech logo hover effect */
+        .tech-logo {
+            transition: transform 0.3s ease;
+        }
+        .tech-logo:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Project card hover effect */
+        .project-card {
+            transition: all 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(88, 166, 255, 0.1), 0 4px 6px -2px rgba(88, 166, 255, 0.05);
+        }
+
+        /* Blinking cursor for typing animation */
+        .blinking-cursor {
+            color: #58A6FF;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            from, to { color: transparent; }
+            50% { color: #58A6FF; }
         }
     </style>
 </head>
@@ -57,9 +95,9 @@
             <a href="#home" class="text-xl font-bold tracking-tight text-white hover:text-accent transition-colors duration-300">Siddh Mehta</a>
             <nav class="hidden md:flex space-x-8">
                 <a href="#about" class="nav-link hover:text-accent transition-colors duration-300">About</a>
+                <a href="#skills" class="nav-link hover:text-accent transition-colors duration-300">Skills</a>
                 <a href="#experience" class="nav-link hover:text-accent transition-colors duration-300">Experience</a>
                 <a href="#projects" class="nav-link hover:text-accent transition-colors duration-300">Projects</a>
-                <a href="#skills" class="nav-link hover:text-accent transition-colors duration-300">Skills</a>
                 <a href="#contact" class="nav-link hover:text-accent transition-colors duration-300">Contact</a>
             </nav>
             <button id="mobile-menu-button" class="md:hidden focus:outline-none">
@@ -69,70 +107,151 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
             <a href="#about" class="block py-2 hover:text-accent">About</a>
+            <a href="#skills" class="block py-2 hover:text-accent">Skills</a>
             <a href="#experience" class="block py-2 hover:text-accent">Experience</a>
             <a href="#projects" class="block py-2 hover:text-accent">Projects</a>
-            <a href="#skills" class="block py-2 hover:text-accent">Skills</a>
             <a href="#contact" class="block py-2 hover:text-accent">Contact</a>
         </div>
     </header>
 
     <main class="container mx-auto px-6 py-12 md:py-20">
+        <!-- HERO SECTION - UPDATED with Image -->
+        <section id="home" class="min-h-[calc(100vh-80px)] flex items-center">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center w-full">
+                <!-- Text Content -->
+                <div class="md:col-span-2 animate-fade-in-up">
+                    <span class="text-accent font-semibold">Hi, my name is</span>
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mt-2">Siddh Mehta.</h1>
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-dark-text mt-2 h-[4rem] md:h-[5rem]">
+                        <span id="dynamic-text" class="text-light-text"></span><span class="blinking-cursor">|</span>
+                    </h2>
+                    <p class="mt-6 max-w-2xl text-lg text-light-text">
+                        I'm a Computer Science student specializing in AI, Data Science, and high-performance software engineering. I have a passion for building intelligent systems, from automated ML forecasting to advanced research tools.
+                    </p>
+                    <div class="mt-8 flex items-center space-x-4">
+                        <a href="#projects" class="bg-accent text-primary font-bold py-3 px-6 rounded-lg hover:bg-opacity-80 transition-all duration-300">
+                            View My Work
+                        </a>
+                        <a href="Copy of Siddh's resume 3nd year-3.pdf" target="_blank" class="border border-accent text-accent font-bold py-3 px-6 rounded-lg hover:bg-accent hover:text-primary transition-all duration-300">
+                            View Resume
+                        </a>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/siddhm11" target="_blank" class="text-dark-text hover:text-accent transition-colors duration-300" aria-label="GitHub Profile">
+                               <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                            </a>
+                            <a href="https://www.linkedin.com/in/siddh-mehta-610a0924b/" target="_blank" class="text-dark-text hover:text-accent transition-colors duration-300" aria-label="LinkedIn Profile">
+                                <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Image -->
+                <div class="hidden md:flex justify-center items-center animate-fade-in-up">
+                    <!-- PHOTO PLACEHOLDER: Replace src with the path to your photo -->
+                    <img src="./assets/pfp.png" alt="A photo of Siddh Mehta" class="rounded-full w-80 h-80 object-cover border-4 border-border-color shadow-lg">
+                </div>
+            </div>
+        </section>
 
-        <!-- Hero Section -->
-        <section id="home" class="min-h-[calc(100vh-80px)] flex flex-col justify-center items-start text-left">
-            <div class="max-w-3xl">
-                <span class="text-accent font-semibold">Hi, my name is</span>
-                <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mt-2">Siddh Mehta.</h1>
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-dark-text mt-2">AI-driven Solutions & Scalable Software.</h2>
-                <p class="mt-6 max-w-2xl text-lg text-light-text">
-                    I'm a Computer Science student specializing in AI, Data Science, and high-performance software engineering. I have a passion for building intelligent systems, from automated ML forecasting to advanced research tools.
-                </p>
-                <div class="mt-8 flex items-center space-x-4">
-                    <a href="#projects" class="bg-accent text-primary font-bold py-3 px-6 rounded-lg hover:bg-opacity-80 transition-all duration-300">
-                        View My Work
-                    </a>
-                    <div class="flex space-x-4">
-                        <a href="#" target="_blank" class="text-dark-text hover:text-accent transition-colors duration-300" aria-label="GitHub Profile">
-                           <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-                        </a>
-                        <a href="#" target="_blank" class="text-dark-text hover:text-accent transition-colors duration-300" aria-label="LinkedIn Profile">
-                            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                        </a>
+        <!-- ABOUT SECTION - REDESIGNED with Image -->
+        <section id="about" class="py-20 md:py-32">
+            <h2 class="text-3xl font-bold text-white text-center">About Me</h2>
+            <div class="mt-12 max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
+                <!-- Left Column: Text -->
+                <div class="space-y-4">
+                    <p class="text-light-text leading-relaxed text-lg">
+                        As a Computer Science student with a deep specialization in AI-driven solutions, Data Science, and scalable software engineering, I thrive on tackling complex challenges. I have hands-on experience building high-performance backend systems, developing and deploying machine learning models, and creating innovative research automation tools.
+                    </p>
+                    <p class="text-light-text leading-relaxed text-lg">
+                        My passion lies in leveraging cutting-edge technologies like AI, NLP, and Large Language Models (LLMs) to enhance information retrieval, automate complex workflows, and solve real-world problems. I am actively seeking a Data Science Internship where I can contribute to ambitious projects and continue to grow my skills in a data-driven environment.
+                    </p>
+                    <p class="text-light-text leading-relaxed text-lg">
+                        Beyond the code, I'm a former international cricketer, a journey that taught me discipline, teamwork, and strategic thinking—skills I apply to every technical challenge I face.
+                    </p>
+                </div>
+                <!-- Right Column: Image and Education -->
+                <div class="space-y-8">
+                    <!-- PHOTO PLACEHOLDER: Replace src with a photo of you (e.g., cricket, coding) -->
+                    <img src="./assets/cric.png" alt="Siddh playing cricket" class="rounded-xl w-full h-auto object-cover border-2 border-border-color shadow-md hover:shadow-lg transition-shadow duration-300">
+                    
+                    <div class="bg-secondary border border-border-color rounded-xl p-6">
+                        <h3 class="font-bold text-white text-lg mb-4">Education</h3>
+                        <div class="relative pl-6 before:content-[''] before:absolute before:left-0 before:top-2 before:w-0.5 before:h-full before:bg-border-color">
+                            <div class="mb-6">
+                                <div class="absolute w-4 h-4 bg-accent rounded-full -left-2 top-2 border-4 border-secondary"></div>
+                                <p class="font-semibold text-white">Vellore Institute of Technology</p>
+                                <p class="text-dark-text text-sm">B.Tech, Computer Science & Engineering, Data Science</p>
+                                <p class="text-dark-text text-sm">Expected May 2026 | 8.96 CGPA</p>
+                            </div>
+                            <div>
+                                <div class="absolute w-4 h-4 bg-accent rounded-full -left-2 top-[108px] border-4 border-secondary"></div>
+                                <p class="font-semibold text-white">Indian School Al Wadi Al Kabir</p>
+                                <p class="text-dark-text text-sm">AISSCE (CBSE XII PCM) Computer Science</p>
+                                <p class="text-dark-text text-sm">Graduated May 2022 | 86.80%</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-
-        <!-- About Section -->
-        <section id="about" class="py-20 md:py-32">
-            <h2 class="text-3xl font-bold text-white text-center">About Me</h2>
-            <div class="mt-12 grid md:grid-cols-5 gap-12 items-center">
-                <div class="md:col-span-3">
-                    <p class="text-light-text leading-relaxed">
-                        As a Computer Science student with a deep specialization in AI-driven solutions, Data Science, and scalable software engineering, I thrive on tackling complex challenges. I have hands-on experience building high-performance backend systems, developing and deploying machine learning models, and creating innovative research automation tools. 
-                    </p>
-                    <p class="mt-4 text-light-text leading-relaxed">
-                        My passion lies in leveraging cutting-edge technologies like AI, NLP, and Large Language Models (LLMs) to enhance information retrieval, automate complex workflows, and solve real-world problems. I am actively seeking a Data Science Internship where I can contribute to ambitious projects and continue to grow my skills in a data-driven environment.
-                    </p>
-                </div>
-                <div class="md:col-span-2 bg-secondary border border-border-color rounded-xl p-6">
-                    <h3 class="font-bold text-white text-lg mb-4">Education</h3>
-                    <div class="relative pl-6 before:content-[''] before:absolute before:left-0 before:top-2 before:w-0.5 before:h-full before:bg-border-color">
-                        <div class="mb-6">
-                            <div class="absolute w-4 h-4 bg-accent rounded-full -left-2 top-2 border-4 border-secondary"></div>
-                            <p class="font-semibold text-white">Vellore Institute of Technology</p>
-                            <p class="text-dark-text text-sm">B.Tech, Computer Science & Engineering, Data Science</p>
-                            <p class="text-dark-text text-sm">Expected May 2026 | 8.96 CGPA</p>
-                        </div>
-                        <div>
-                            <div class="absolute w-4 h-4 bg-accent rounded-full -left-2 top-[108px] border-4 border-secondary"></div>
-                            <p class="font-semibold text-white">Indian School Al Wadi Al Kabir</p>
-                            <p class="text-dark-text text-sm">AISSCE (CBSE XII PCM) Computer Science</p>
-                            <p class="text-dark-text text-sm">Graduated May 2022 | 86.80%</p>
-                        </div>
+        <!-- (Rest of the sections: Skills, Experience, etc. remain the same) -->
+        
+        <!-- Skills & Tech Stack Section -->
+        <section id="skills" class="py-20 md:py-32">
+            <h2 class="text-3xl font-bold text-white text-center">My Tech Stack & Skills</h2>
+            <div class="mt-12 max-w-4xl mx-auto">
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 text-center">
+                    <div class="flex flex-col items-center tech-logo">
+                        <img src="https://www.vectorlogo.zone/logos/python/python-icon.svg" alt="Python" class="h-16 w-16">
+                        <p class="mt-2 text-light-text">Python</p>
+                    </div>
+                    <div class="flex flex-col items-center tech-logo">
+                        <img src="https://www.vectorlogo.zone/logos/java/java-icon.svg" alt="Java" class="h-16 w-16">
+                        <p class="mt-2 text-light-text">Java</p>
+                    </div>
+                    <div class="flex flex-col items-center tech-logo">
+                        <img src="https://www.vectorlogo.zone/logos/javascript/javascript-icon.svg" alt="JavaScript" class="h-16 w-16">
+                        <p class="mt-2 text-light-text">JavaScript</p>
+                    </div>
+                     <div class="flex flex-col items-center tech-logo">
+                        <img src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg" alt="Spring Boot" class="h-16 w-16">
+                        <p class="mt-2 text-light-text">Spring Boot</p>
+                    </div>
+                    <div class="flex flex-col items-center tech-logo">
+                        <img src="https://www.vectorlogo.zone/logos/tensorflow/tensorflow-icon.svg" alt="TensorFlow" class="h-16 w-16">
+                        <p class="mt-2 text-light-text">TensorFlow</p>
+                    </div>
+                    <div class="flex flex-col items-center tech-logo">
+                        <img src="https://www.vectorlogo.zone/logos/postgresql/postgresql-icon.svg" alt="PostgreSQL" class="h-16 w-16">
+                        <p class="mt-2 text-light-text">PostgreSQL</p>
+                    </div>
+                     <div class="flex flex-col items-center tech-logo">
+                        <img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg" alt="GCP" class="h-16 w-16">
+                        <p class="mt-2 text-light-text">GCP</p>
+                    </div>
+                    <div class="flex flex-col items-center tech-logo">
+                        <img src="https://www.vectorlogo.zone/logos/reactjs/reactjs-icon.svg" alt="React" class="h-16 w-16">
+                        <p class="mt-2 text-light-text">React</p>
                     </div>
                 </div>
+                 <div class="mt-16 bg-secondary p-6 rounded-lg border border-border-color">
+                        <h3 class="font-bold text-white text-lg mb-4 text-center">Other Skills</h3>
+                        <div class="flex flex-wrap gap-3 justify-center">
+                            <span class="bg-border-color/50 text-light-text font-medium px-3 py-1 rounded-full">Data Science</span>
+                            <span class="bg-border-color/50 text-light-text font-medium px-3 py-1 rounded-full">AI/ML</span>
+                            <span class="bg-border-color/50 text-light-text font-medium px-3 py-1 rounded-full">Deep Learning</span>
+                            <span class="bg-border-color/50 text-light-text font-medium px-3 py-1 rounded-full">NLP</span>
+                            <span class="bg-border-color/50 text-light-text font-medium px-3 py-1 rounded-full">LangGraph</span>
+                            <span class="bg-border-color/50 text-light-text font-medium px-3 py-1 rounded-full">Forecasting</span>
+                            <span class="bg-border-color/50 text-light-text font-medium px-3 py-1 rounded-full">Data Analysis</span>
+                            <span class="bg-border-color/50 text-light-text font-medium px-3 py-1 rounded-full">Node.js</span>
+                            <span class="bg-border-color/50 text-light-text font-medium px-3 py-1 rounded-full">C++</span>
+                            <span class="bg-border-color/50 text-light-text font-medium px-3 py-1 rounded-full">C</span>
+                            <span class="bg-border-color/50 text-light-text font-medium px-3 py-1 rounded-full">HTML/CSS</span>
+                            <span class="bg-border-color/50 text-light-text font-medium px-3 py-1 rounded-full">Data Structures</span>
+                        </div>
+                    </div>
             </div>
         </section>
 
@@ -173,14 +292,13 @@
                 </div>
             </div>
         </section>
-
-
+        
         <!-- Projects Section -->
         <section id="projects" class="py-20 md:py-32">
             <h2 class="text-3xl font-bold text-white text-center">Featured Projects</h2>
             <div class="mt-12 grid md:grid-cols-1 lg:grid-cols-2 gap-8">
                 <!-- Project 1 -->
-                <div class="bg-secondary border border-border-color rounded-lg p-6 flex flex-col hover:border-accent transition-colors duration-300">
+                <div class="project-card bg-secondary border border-border-color rounded-lg p-6 flex flex-col">
                     <div class="flex-grow">
                         <h3 class="text-xl font-bold text-accent">ResearchIT - Smart Research Recommender</h3>
                         <p class="mt-3 text-light-text">An AI-powered system that recommends relevant research papers from the 2.7 million+ arXiv dataset, improving search efficiency by 70%. Features LLM-powered summarization to make complex topics more accessible.</p>
@@ -192,17 +310,15 @@
                             <span class="bg-border-color/50 text-accent font-mono px-2 py-1 rounded">Streamlit</span>
                             <span class="bg-border-color/50 text-accent font-mono px-2 py-1 rounded">Vector DB</span>
                             <span class="bg-border-color/50 text-accent font-mono px-2 py-1 rounded">LLMs</span>
-                            <span class="bg-border-color/50 text-accent font-mono px-2 py-1 rounded">PostgreSQL</span>
-                            <span class="bg-border-color/50 text-accent font-mono px-2 py-1 rounded">GCP</span>
                         </div>
-                        <a href="#" target="_blank" class="text-dark-text hover:text-accent font-semibold transition-colors duration-300 flex items-center">
+                        <a href="https://github.com/siddhm11/ResearchIT" target="_blank" class="text-dark-text hover:text-accent font-semibold transition-colors duration-300 flex items-center">
                             View on GitHub <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                         </a>
                     </div>
                 </div>
 
                 <!-- Project 2 -->
-                <div class="bg-secondary border border-border-color rounded-lg p-6 flex flex-col hover:border-accent transition-colors duration-300">
+                <div class="project-card bg-secondary border border-border-color rounded-lg p-6 flex flex-col">
                     <div class="flex-grow">
                         <h3 class="text-xl font-bold text-accent">Agentic AI for ML Forecasting</h3>
                         <p class="mt-3 text-light-text">An impetus project at Jio, this Agentic AI framework automates the entire machine learning workflow for tabular data. It uses LLM agents for smart feature selection, model recommendation, and hyperparameter tuning.</p>
@@ -210,20 +326,18 @@
                     <div class="mt-4">
                         <div class="flex flex-wrap gap-2 text-sm mb-4">
                             <span class="bg-border-color/50 text-accent font-mono px-2 py-1 rounded">Python</span>
-                            <span class="bg-border-color/50 text-accent font-mono px-2 py-1 rounded">Pandas</span>
                             <span class="bg-border-color/50 text-accent font-mono px-2 py-1 rounded">Scikit-learn</span>
-                            <span class="bg-border-color/50 text-accent font-mono px-2 py-1 rounded">XGBoost</span>
                             <span class="bg-border-color/50 text-accent font-mono px-2 py-1 rounded">LangGraph</span>
                             <span class="bg-border-color/50 text-accent font-mono px-2 py-1 rounded">LLM APIs</span>
                         </div>
-                        <a href="#" target="_blank" class="text-dark-text hover:text-accent font-semibold transition-colors duration-300 flex items-center">
+                        <a href="https://github.com/siddhm11" target="_blank" class="text-dark-text hover:text-accent font-semibold transition-colors duration-300 flex items-center">
                             View on GitHub <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                         </a>
                     </div>
                 </div>
                 
                 <!-- Project 3 -->
-                <div class="bg-secondary border border-border-color rounded-lg p-6 flex flex-col hover:border-accent transition-colors duration-300 lg:col-span-2">
+                <div class="project-card bg-secondary border border-border-color rounded-lg p-6 flex flex-col lg:col-span-2">
                      <div class="flex-grow">
                         <h3 class="text-xl font-bold text-accent">Digital Asset Management (DAM) Solution</h3>
                         <p class="mt-3 text-light-text">A high-performance backend solution built for Acheron Software to enable efficient data organization, retrieval, and sharing. The system optimized secure data transfer protocols, increasing completion rates by 85% and speed by 60%.</p>
@@ -232,12 +346,10 @@
                         <div class="flex flex-wrap gap-2 text-sm mb-4">
                             <span class="bg-border-color/50 text-accent font-mono px-2 py-1 rounded">Java</span>
                             <span class="bg-border-color/50 text-accent font-mono px-2 py-1 rounded">Spring Boot</span>
-                            <span class="bg-border-color/50 text-accent font-mono px-2 py-1 rounded">Spring MVC</span>
                             <span class="bg-border-color/50 text-accent font-mono px-2 py-1 rounded">REST API</span>
                             <span class="bg-border-color/50 text-accent font-mono px-2 py-1 rounded">SQL</span>
-                            <span class="bg-border-color/50 text-accent font-mono px-2 py-1 rounded">Postman</span>
                         </div>
-                        <a href="#" target="_blank" class="text-dark-text hover:text-accent font-semibold transition-colors duration-300 flex items-center">
+                        <a href="https://github.com/siddhm11" target="_blank" class="text-dark-text hover:text-accent font-semibold transition-colors duration-300 flex items-center">
                             View on GitHub <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                         </a>
                     </div>
@@ -245,53 +357,18 @@
             </div>
         </section>
 
-        <!-- Skills Section -->
-        <section id="skills" class="py-20 md:py-32">
-            <h2 class="text-3xl font-bold text-white text-center">My Technical Skills</h2>
-            <div class="mt-12 max-w-5xl mx-auto">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-secondary p-6 rounded-lg border border-border-color">
-                        <h3 class="font-bold text-white text-lg mb-4">Data Science & AI/ML</h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="skill-tag">Data Science</span><span class="skill-tag">AI</span>
-                            <span class="skill-tag">Machine Learning</span><span class="skill-tag">Deep Learning</span>
-                            <span class="skill-tag">TensorFlow</span><span class="skill-tag">NLP</span>
-                            <span class="skill-tag">LangGraph</span><span class="skill-tag">Forecasting</span>
-                            <span class="skill-tag">Data Analysis</span>
-                        </div>
-                    </div>
-                    <div class="bg-secondary p-6 rounded-lg border border-border-color">
-                        <h3 class="font-bold text-white text-lg mb-4">Languages & Core CS</h3>
-                        <div class="flex flex-wrap gap-2">
-                             <span class="skill-tag">Python</span><span class="skill-tag">Java</span>
-                             <span class="skill-tag">JavaScript</span><span class="skill-tag">C++</span>
-                             <span class="skill-tag">C</span><span class="skill-tag">HTML</span>
-                             <span class="skill-tag">CSS</span><span class="skill-tag">Data Structures</span>
-                        </div>
-                    </div>
-                    <div class="bg-secondary p-6 rounded-lg border border-border-color md:col-span-2 lg:col-span-1">
-                        <h3 class="font-bold text-white text-lg mb-4">Web & Backend Dev</h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="skill-tag">Java SpringBoot</span><span class="skill-tag">Node.js</span>
-                            <span class="skill-tag">ReactJS</span><span class="skill-tag">Web Development</span>
-                            <span class="skill-tag">Bootstrap</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
         <!-- Contact Section -->
         <section id="contact" class="py-20 md:py-32 text-center">
-            <h2 class="text-3xl font-bold text-white">Get In Touch</h2>
-            <p class="mt-4 max-w-xl mx-auto text-light-text">
-                I'm currently seeking new opportunities for a Data Science Internship. My inbox is always open, whether you have a question or just want to say hi, I'll try my best to get back to you!
-            </p>
-            <div class="mt-8">
-                <a href="mailto:mehtasiddh011@gmail.com" class="bg-accent text-primary font-bold py-3 px-8 rounded-lg hover:bg-opacity-80 transition-all duration-300 text-lg">
-                    Say Hello
-                </a>
+            <div class="animate-fade-in-up">
+                <h2 class="text-3xl font-bold text-white">Get In Touch</h2>
+                <p class="mt-4 max-w-xl mx-auto text-light-text">
+                    I'm currently seeking new opportunities for a Data Science Internship. My inbox is always open, whether you have a question or just want to say hi, I'll try my best to get back to you!
+                </p>
+                <div class="mt-8">
+                    <a href="mailto:mehtasiddh011@gmail.com" class="bg-accent text-primary font-bold py-3 px-8 rounded-lg hover:bg-opacity-80 transition-all duration-300 text-lg">
+                        Say Hello
+                    </a>
+                </div>
             </div>
         </section>
     </main>
@@ -301,21 +378,23 @@
         <div class="container mx-auto px-6 py-6 text-center text-dark-text">
             <p>&copy; 2024 Siddh Mehta. Built with passion and code.</p>
             <div class="mt-4 flex justify-center space-x-4">
-                <a href="#" target="_blank" class="hover:text-accent transition-colors duration-300">GitHub</a>
-                <a href="#" target="_blank" class="hover:text-accent transition-colors duration-300">LinkedIn</a>
+                <a href="https://github.com/siddhm11" target="_blank" class="hover:text-accent transition-colors duration-300">GitHub</a>
+                <a href="https://www.linkedin.com/in/siddh-mehta-610a0924b/" target="_blank" class="hover:text-accent transition-colors duration-300">LinkedIn</a>
             </div>
         </div>
     </footer>
 
     <script>
-        // Simple script for mobile menu toggle
+        // (The JavaScript for menu, scrolling, and typing animation is unchanged)
+        // ... paste the same <script> content from the previous answer here ...
+        // Mobile menu toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Script for smooth scrolling and active nav link highlighting
+        // Smooth scrolling and active nav link highlighting
         document.addEventListener('DOMContentLoaded', () => {
             const sections = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('.nav-link');
@@ -330,7 +409,7 @@
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
-                threshold: 0.4 // Adjust this value to change when the link becomes active
+                threshold: 0.4
             };
 
             const observer = new IntersectionObserver((entries, observer) => {
@@ -349,6 +428,108 @@
             sections.forEach(section => {
                 observer.observe(section);
             });
+            
+            // Intersection observer for animations
+            const animatedElements = document.querySelectorAll('.animate-fade-in-up');
+            const animationObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in-up');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            animatedElements.forEach(el => {
+                animationObserver.observe(el);
+            });
+            
+            // DYNAMIC TYPING TEXT ANIMATION
+            const dynamicText = document.getElementById('dynamic-text');
+            const phrases = [
+                "I study CS with Data Science at VIT.",
+                "I'm a former international cricketer for Oman.",
+                "SPECIAL_JAVA_PYTHON"
+            ];
+            let phraseIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            const typingSpeed = 120;
+            const erasingSpeed = 60;
+            const delayBetweenPhrases = 2000;
+            let javaPhase = 0; 
+
+            function type() {
+                if (phrases[phraseIndex] === "SPECIAL_JAVA_PYTHON") {
+                    handleJavaPythonTransition();
+                    return;
+                }
+                const currentPhrase = phrases[phraseIndex];
+                if (isDeleting) {
+                    dynamicText.textContent = currentPhrase.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    dynamicText.textContent = currentPhrase.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+
+                if (!isDeleting && charIndex === currentPhrase.length) {
+                    isDeleting = true;
+                    setTimeout(type, delayBetweenPhrases);
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    phraseIndex = (phraseIndex + 1) % phrases.length;
+                    setTimeout(type, typingSpeed);
+                } else {
+                    setTimeout(type, isDeleting ? erasingSpeed : typingSpeed);
+                }
+            }
+
+            function handleJavaPythonTransition() {
+                if (javaPhase === 0) {
+                    const javaText = "I code in Java";
+                    if (charIndex < javaText.length) {
+                        dynamicText.textContent = javaText.substring(0, charIndex + 1);
+                        charIndex++;
+                        setTimeout(type, typingSpeed);
+                    } else {
+                        javaPhase = 1;
+                        setTimeout(type, delayBetweenPhrases);
+                    }
+                } else if (javaPhase === 1) {
+                    const targetText = "I code in";
+                    if (dynamicText.textContent.length > targetText.length) {
+                        dynamicText.textContent = dynamicText.textContent.slice(0, -1);
+                        charIndex--;
+                        setTimeout(type, erasingSpeed);
+                    } else {
+                        javaPhase = 2;
+                        charIndex = targetText.length;
+                        setTimeout(type, typingSpeed);
+                    }
+                } else if (javaPhase === 2) {
+                    const pythonText = "I code in Python";
+                    if (charIndex < pythonText.length) {
+                        dynamicText.textContent = pythonText.substring(0, charIndex + 1);
+                        charIndex++;
+                        setTimeout(type, typingSpeed);
+                    } else {
+                        javaPhase = 3;
+                        setTimeout(type, delayBetweenPhrases);
+                    }
+                } else if (javaPhase === 3) {
+                    if (charIndex > 0) {
+                        dynamicText.textContent = dynamicText.textContent.slice(0, -1);
+                        charIndex--;
+                        setTimeout(type, erasingSpeed);
+                    } else {
+                        javaPhase = 0;
+                        phraseIndex = (phraseIndex + 1) % phrases.length;
+                        setTimeout(type, typingSpeed);
+                    }
+                }
+            }
+            type();
         });
     </script>
 </body>
